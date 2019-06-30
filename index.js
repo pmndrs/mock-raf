@@ -1,52 +1,31 @@
-var assign = require('object-assign');
-
-export default function () {
-  var allCallbacks = {};
-  var callbacksLength = 0;
-
-  var now = 0;
-
-  var getNow = function () {
-    return now;
-  };
-
-  var raf = function (callback) {
-    callbacksLength += 1;
-
-    allCallbacks[callbacksLength] = callback;
-
-    return callbacksLength;
-  };
-
-  var cancel = function (id) {
-    delete allCallbacks[id];
-  };
-
-  var step = function (opts) {
-    var options = assign({}, {
-      time: 1000 / 60,
-      count: 1
-    }, opts);
-
-    var oldAllCallbacks;
-
-    for (var i = 0; i < options.count; i++) {
-      oldAllCallbacks = allCallbacks;
-      allCallbacks = {};
-      
-      now += options.time;
-
-      Object.keys(oldAllCallbacks).forEach(function (id) {
-        var callback = oldAllCallbacks[id];
-        callback(now);
-      });
-    }
-  }
-
+function mockRaf() {
+  let requests = {}
+  let nextId = 1
+  let now = 0
   return {
-    now: getNow,
-    raf: raf,
-    cancel: cancel,
-    step: step
-  };
-};
+    now: () => now,
+    raf(callback) {
+      const id = nextId++
+      requests[id] = callback
+      return id
+    },
+    cancel(id) {
+      delete requests[id]
+    },
+    step({ count = 1, time = 1000 / 60 } = {}) {
+      for (let i = 0; i < count; i++) {
+        const current = requests
+        requests = {}
+
+        now += time
+        for (const id in current) {
+          const callback = current[id]
+          callback(now)
+        }
+      }
+    },
+  }
+}
+
+module.exports = mockRaf
+Object.defineProperty(mockRaf, 'default', { value: mockRaf })
