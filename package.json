@@ -1,13 +1,9 @@
 {
-  "name": "mock-raf",
-  "version": "1.0.1",
+  "name": "@react-spring/mock-raf",
+  "version": "1.0.0",
   "description": "A simple mock for requestAnimationFrame testing with fake timers.",
-  "main": "index.js",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FormidableLabs/mock-raf.git"
-  },
+  "repository": "https://github.com/react-spring/mock-raf.git",
   "devDependencies": {
     "prettier": "^1.18.2"
   }
