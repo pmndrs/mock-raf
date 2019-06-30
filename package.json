@@ -4,6 +4,10 @@
   "description": "A simple mock for requestAnimationFrame testing with fake timers.",
   "license": "MIT",
   "repository": "https://github.com/react-spring/mock-raf.git",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "devDependencies": {
     "prettier": "^1.18.2"
   }
