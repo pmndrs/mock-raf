@@ -1,6 +1,6 @@
 var assign = require('object-assign');
 
-module.exports = function () {
+export default function () {
   var allCallbacks = {};
   var callbacksLength = 0;
 
