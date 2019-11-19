@@ -34,23 +34,33 @@ Returns:
 const mockRaf = createMockRaf()
 ```
 
+&nbsp;
+
 ### `now()`
 
 Returns the current `now` value of the mock. Starts at 0 and increases with each `step()` taken. Useful for stubbing out `performance.now()` or a polyfill when using `requestAnimationFrame` with timers.
+
+&nbsp;
 
 ### `raf()`
 
 Replacement for `requestAnimationFrame` or a polyfill. Adds a callback to be fired on the next step.
 
+&nbsp;
+
 ### `cancel()`
 
 Replacement for `cancelAnimationFrame` or a polyfill. Removes all currently scheduled `requestAnimationFrame` callbacks from the queue.
+
+&nbsp;
 
 ### `flush()`
 
 Continuously iterate the `requestAnimationFrame` queue until empty.
 
 Useful for jumping to the end of an animation (or group of animations).
+
+&nbsp;
 
 ### `step(options)`
 
