@@ -3,8 +3,7 @@
 // Definitions by: Daniel Pereira <https://github.com/djpereira>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-export type FrameRequestCallback =
-  (time: number) => void
+export type FrameRequestCallback = (time: number) => void
 
 export namespace MockRaf {
   interface Options {
