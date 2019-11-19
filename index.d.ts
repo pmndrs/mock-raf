@@ -32,6 +32,9 @@ export interface MockRaf {
 
   /** Takes requestAnimationFrame steps. Fires currently queued callbacks for each step and increments now time for each step. The primary way to interact with a mockRaf instance for testing. */
   step(options?: MockRaf.Options): void
+
+  /** Continously iterate the requestAnimationFrame queue until empty. Useful for jumping to the end of an animation or group of animations. */
+  flush(): void
 }
 
 export default function mockRaf(): MockRaf

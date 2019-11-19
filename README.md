@@ -46,6 +46,12 @@ Replacement for `requestAnimationFrame` or a polyfill. Adds a callback to be fir
 
 Replacement for `cancelAnimationFrame` or a polyfill. Removes all currently scheduled `requestAnimationFrame` callbacks from the queue.
 
+### `flush()`
+
+Continuously iterate the `requestAnimationFrame` queue until empty.
+
+Useful for jumping to the end of an animation (or group of animations).
+
 ### `step(options)`
 
 Takes `requestAnimationFrame` steps. Fires currently queued callbacks for each step and increments `now` time for each step. The primary way to interact with a `mockRaf` instance for testing.
