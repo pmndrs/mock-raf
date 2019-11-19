@@ -1,4 +1,4 @@
-function mockRaf() {
+function createMockRaf() {
   let requests = new Map()
   let nextId = 1
   let now = 0
@@ -29,5 +29,5 @@ function mockRaf() {
   }
 }
 
-module.exports = mockRaf
-Object.defineProperty(mockRaf, 'default', { value: mockRaf })
+module.exports = createMockRaf
+Object.defineProperty(createMockRaf, 'default', { value: createMockRaf })

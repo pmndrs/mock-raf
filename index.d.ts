@@ -37,4 +37,4 @@ export interface MockRaf {
   flush(): void
 }
 
-export default function mockRaf(): MockRaf
+export default function createMockRaf(): MockRaf
