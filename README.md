@@ -4,17 +4,34 @@ A simple mock for `requestAnimationFrame` testing with fake timers.
 
 Adapted with gratitude from [`react-motion`](https://github.com/chenglou/react-motion/blob/dafff3f2b00ac11f39d91f3363cc97de664b2406/test/createMockRaf.js).
 
-## Basic Usage
+## Example
+
+To use with `jest`/`jasmine` and `react-spring`:
 
 ```js
-import createMockRaf from 'mock-raf'
-const mockRaf = createMockRaf()
+import createMockRaf from '@react-spring/mock-raf'
+import { Globals, FrameLoop, SpringValue } from 'react-spring'
 
-// Stub out your `requestAnimationFrame` method
-sinon.stub(window, 'requestAnimationFrame').callsFake(mockRaf.raf)
+let mockRaf
+beforeEach(() => {
+  mockRaf = createMockRaf()
+  Globals.assign({
+    now: mockRaf.now,
+    performanceNow: mockRaf.now,
+    requestAnimationFrame: mockRaf.raf,
+    cancelAnimationFrame: mockRaf.cancel,
+    frameLoop: new FrameLoop(),
+  })
+})
 
-// Take 10 `requestAnimationFrame` steps (your callback will fire 10 times)
-mockRaf.step({ count: 10 })
+it('animates from 0 to 1', () => {
+  const value = new SpringValue(0)
+  value.start(1)
+
+  expect(value.get()).toBe(0)
+  mockRaf.flush()
+  expect(value.get()).toBe(1)
+})
 ```
 
 ## API
