@@ -12,7 +12,7 @@ function createMockRaf() {
     cancel(id) {
       requests.delete(id)
     },
-    step({ count = 1, time = 1000 / 60 } = {}) {
+    step({ count = 1, time = 16.667 } = {}) {
       for (let i = 0; i < count; i++) {
         const current = Array.from(requests.values())
         requests.clear()
